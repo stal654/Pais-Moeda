@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta de Moeda por País</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            margin-top: 50px;
+        }
+
+        table {
+            margin: 20px auto;
+            border-collapse: collapse;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+
+        table td {
+            padding: 15px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        table td.country {
+            cursor: pointer;
+            color: #007bff;
+            font-weight: bold;
+        }
+
+        table td.country:hover {
+            text-decoration: underline;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-style: italic;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <h1>Consulta de Moeda por País</h1>
+    <p>Clique no país para ver a moeda:</p>
+    <table>
+        <tr>
+            <td class="country">Estados Unidos</td>
+            <td class="country">Reino Unido</td>
+            <td class="country">Brasil</td>
+            <td class="country">França</td>
+            <td class="country">Alemanha</td>
+            <td class="country">Japão</td>
+            <td class="country">China</td>
+            <td class="country">Austrália</td>
+            <td class="country">Canadá</td>
+        </tr>
+    </table>
+    <div id="result"></div>
+
+    <script>
+        document.querySelectorAll('.country').forEach(item => {
+            item.addEventListener('click', event => {
+                const country = event.target.textContent;
+                const currency = getCurrencyByCountry(country);
+                document.getElementById('result').textContent = currency;
+            });
+        });
+
+        function getCurrencyByCountry(country) {
+            const currencies = {
+                "Estados Unidos": "Dólar",
+                "Reino Unido": "Libra",
+                "Brasil": "Real",
+                "França": "Euro",
+                "Alemanha": "Euro",
+                "Japão": "Iene",
+                "China": "Yuan",
+                "Austrália": "Dólar",
+                "Canadá": "Dólar"
+            };
+
+            return currencies[country] || 'Moeda não encontrada';
+        }
+    </script>
+</body>
+</html>
